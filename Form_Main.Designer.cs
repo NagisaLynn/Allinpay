@@ -53,6 +53,8 @@
             this.richTextBox_output = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button_Clear = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox_Amount = new System.Windows.Forms.TextBox();
             this.groupBox_Payment.SuspendLayout();
             this.groupBox_Void.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -75,7 +77,7 @@
             this.groupBox_Payment.Controls.Add(this.button_TenderQRImage);
             this.groupBox_Payment.Controls.Add(this.button_TenderQRScan);
             this.groupBox_Payment.Controls.Add(this.button_TenderCCard);
-            this.groupBox_Payment.Location = new System.Drawing.Point(7, 12);
+            this.groupBox_Payment.Location = new System.Drawing.Point(7, 48);
             this.groupBox_Payment.Name = "groupBox_Payment";
             this.groupBox_Payment.Size = new System.Drawing.Size(86, 108);
             this.groupBox_Payment.TabIndex = 1;
@@ -116,7 +118,7 @@
             // 
             this.groupBox_Void.Controls.Add(this.button_VoidQR);
             this.groupBox_Void.Controls.Add(this.button_VoidCard);
-            this.groupBox_Void.Location = new System.Drawing.Point(99, 12);
+            this.groupBox_Void.Location = new System.Drawing.Point(99, 48);
             this.groupBox_Void.Name = "groupBox_Void";
             this.groupBox_Void.Size = new System.Drawing.Size(86, 108);
             this.groupBox_Void.TabIndex = 2;
@@ -147,7 +149,7 @@
             // 
             this.groupBox1.Controls.Add(this.button_RefundQR);
             this.groupBox1.Controls.Add(this.button_RefundCard);
-            this.groupBox1.Location = new System.Drawing.Point(191, 12);
+            this.groupBox1.Location = new System.Drawing.Point(191, 48);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(86, 108);
             this.groupBox1.TabIndex = 3;
@@ -182,7 +184,7 @@
             this.groupBox_other.Controls.Add(this.button_Reprint);
             this.groupBox_other.Controls.Add(this.button_SignIn);
             this.groupBox_other.Controls.Add(this.button_Query_Test);
-            this.groupBox_other.Location = new System.Drawing.Point(7, 126);
+            this.groupBox_other.Location = new System.Drawing.Point(7, 162);
             this.groupBox_other.Name = "groupBox_other";
             this.groupBox_other.Size = new System.Drawing.Size(270, 76);
             this.groupBox_other.TabIndex = 4;
@@ -245,7 +247,7 @@
             this.groupBox_Auth.Controls.Add(this.button_AuthConfirm);
             this.groupBox_Auth.Controls.Add(this.button_AuthCancel);
             this.groupBox_Auth.Controls.Add(this.button_Auth);
-            this.groupBox_Auth.Location = new System.Drawing.Point(283, 12);
+            this.groupBox_Auth.Location = new System.Drawing.Point(283, 48);
             this.groupBox_Auth.Name = "groupBox_Auth";
             this.groupBox_Auth.Size = new System.Drawing.Size(85, 190);
             this.groupBox_Auth.TabIndex = 5;
@@ -295,7 +297,7 @@
             // richTextBox_output
             // 
             this.richTextBox_output.Enabled = false;
-            this.richTextBox_output.Location = new System.Drawing.Point(7, 221);
+            this.richTextBox_output.Location = new System.Drawing.Point(7, 257);
             this.richTextBox_output.Name = "richTextBox_output";
             this.richTextBox_output.Size = new System.Drawing.Size(361, 197);
             this.richTextBox_output.TabIndex = 6;
@@ -304,7 +306,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 205);
+            this.label1.Location = new System.Drawing.Point(4, 241);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 7;
@@ -312,7 +314,7 @@
             // 
             // button_Clear
             // 
-            this.button_Clear.Location = new System.Drawing.Point(293, 426);
+            this.button_Clear.Location = new System.Drawing.Point(293, 460);
             this.button_Clear.Name = "button_Clear";
             this.button_Clear.Size = new System.Drawing.Size(75, 23);
             this.button_Clear.TabIndex = 8;
@@ -320,11 +322,29 @@
             this.button_Clear.UseVisualStyleBackColor = true;
             this.button_Clear.Click += new System.EventHandler(this.button_Clear_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Amount";
+            // 
+            // textBox_Amount
+            // 
+            this.textBox_Amount.Location = new System.Drawing.Point(59, 12);
+            this.textBox_Amount.Name = "textBox_Amount";
+            this.textBox_Amount.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Amount.TabIndex = 10;
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 461);
+            this.ClientSize = new System.Drawing.Size(379, 495);
+            this.Controls.Add(this.textBox_Amount);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button_Clear);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox_output);
@@ -373,6 +393,8 @@
         private System.Windows.Forms.RichTextBox richTextBox_output;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_Clear;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox_Amount;
     }
 }
 
