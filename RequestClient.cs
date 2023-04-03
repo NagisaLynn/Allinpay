@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
+using System.IO;
+using System.Data.Entity.Validation;
+using System.Text;
 
 namespace Allinpay
 {
     public class RequestClient
     {
+
         public class PostResponse
         {
             public string Status { get; set; }
@@ -35,12 +34,13 @@ namespace Allinpay
             PostResponse Response = new PostResponse();
             try
             {
-                AllinPayApiService APIService = new AllinPayApiService(MisConfig.URL, null);
+                AllinPayApiService APIService = new AllinPayApiService(MisConfig.IP, null);
                 Response = await APIService.Post(allinpayRequestModel);
                 return Response;
             }
             catch (Exception ex)
             {
+                RequestClient.WriteErrorLog("Error at PostAllinPayApiService. ", "--RequestClient--", ex);
                 return Response;
             }
         }
@@ -56,6 +56,7 @@ namespace Allinpay
             }
             catch (Exception ex)
             {
+                RequestClient.WriteErrorLog("Error at getTransTraceNo. ", "--RequestClient--", ex);
                 return null;
             }
         }
@@ -70,6 +71,7 @@ namespace Allinpay
             }
             catch (Exception ex)
             {
+                RequestClient.WriteErrorLog("Error at getTransOrderNo. ", "--RequestClient--", ex);
                 return null;
             }
         }
@@ -88,7 +90,98 @@ namespace Allinpay
             }
             catch (Exception ex)
             {
+                RequestClient.WriteErrorLog("Error at randomString. ", "--RequestClient--", ex);
                 return null;
+            }
+        }
+
+
+        public static void WriteEventLog(String strString)
+        {
+            try
+            {
+                string locationDirectory = Path.Combine(@"D:\", string.Format("AllinPay/EventLogs/"));
+
+                if (!Directory.Exists(locationDirectory))
+                    Directory.CreateDirectory(locationDirectory);
+
+                String strPath = Path.Combine(locationDirectory, DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
+                if (!File.Exists(strPath))
+                {
+                    using (StreamWriter sw = File.CreateText(strPath))
+                    {
+                        sw.WriteLine("File created on " + DateTime.Now.ToString());
+                    }
+                }
+
+                using (StreamWriter sw = File.AppendText(strPath))
+                {
+                    sw.WriteLine(DateTime.Now.ToString() + " : " + strString);
+                }
+            }
+            catch (Exception ex)
+            {
+                //throw;
+            }
+        }
+
+        public static void WriteErrorLog(String customErrorMessage, String controllerName, Exception error = null)
+        {
+            try
+            {
+                string locationDirectory = Path.Combine(@"D:\", string.Format("AllinPay/ErrorLogs/"));
+
+                if (!Directory.Exists(locationDirectory))
+                    Directory.CreateDirectory(locationDirectory);
+
+                String strPath = Path.Combine(locationDirectory, DateTime.Now.ToString("yyyy-MM-dd") + ".txt");
+                if (!File.Exists(strPath))
+                {
+                    using (StreamWriter sw = File.CreateText(strPath))
+                    {
+                        sw.WriteLine("File created on " + DateTime.Now.ToString());
+                    }
+                }
+
+                using (StreamWriter sw = File.AppendText(strPath))
+                {
+                    sw.WriteLine(Environment.NewLine);
+                    string errMessage = string.Format("{0} : {1} - {2}, {3}", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss.fff tt"), controllerName,
+                        customErrorMessage, error != null ? error.ToLogString(Environment.StackTrace) : string.Empty);
+                    sw.WriteLine(errMessage);
+                    if (error != null)
+                    {
+                        try
+                        {
+                            DbEntityValidationException eFException = (DbEntityValidationException)error;
+                            foreach (var eve in eFException.EntityValidationErrors)
+                            {
+                                sw.WriteLine(string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:", eve.Entry.Entity.GetType().Name, eve.Entry.State));
+                                foreach (var ve in eve.ValidationErrors)
+                                {
+                                    sw.WriteLine(string.Format("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage));
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                        }
+
+                        if (error.InnerException != null)
+                        {
+                            sw.WriteLine("INNER EXCEPTION x1 : " + error.InnerException.Message);
+                            if (error.InnerException.InnerException != null)
+                            {
+                                sw.WriteLine("INNER EXCEPTION x2 : " + error.InnerException.InnerException.Message);
+                            }
+                        }
+                    }
+                    sw.WriteLine(Environment.NewLine);
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }
