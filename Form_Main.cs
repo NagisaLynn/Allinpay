@@ -50,7 +50,8 @@ namespace Allinpay
                 allinpayRequestModel.TRANS_ORDER_NO = RequestClient.getTransOrderNo(); //*
                 allinpayRequestModel.DCC_FLAG = "EDC"; //*
                 allinpayRequestModel.BUS_INFO = "01"; 
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -72,7 +73,8 @@ namespace Allinpay
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
                 allinpayRequestModel.TRANS_ORDER_NO = RequestClient.getTransOrderNo(); //*
                 allinpayRequestModel.BUS_INFO = "01";
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -94,7 +96,8 @@ namespace Allinpay
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
                 allinpayRequestModel.TRANS_ORDER_NO = RequestClient.getTransOrderNo(); //*
                 allinpayRequestModel.BUS_INFO = "01";
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -118,7 +121,8 @@ namespace Allinpay
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
                 allinpayRequestModel.ORIG_TRACE_NO = "45"; //* // Original system reference number
                 allinpayRequestModel.BUS_INFO = "01";
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel); 
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -140,7 +144,8 @@ namespace Allinpay
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
                 allinpayRequestModel.ORIG_TRACE_NO = "45"; //* // Original system reference number
                 allinpayRequestModel.BUS_INFO = "01";
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -165,7 +170,8 @@ namespace Allinpay
                 allinpayRequestModel.ORIG_DATE = "45"; //*
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();   //*           
                 allinpayRequestModel.BUS_INFO = "01";
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -187,7 +193,8 @@ namespace Allinpay
                 allinpayRequestModel.ORIG_TRANS_TICKET_NO = "45"; //*
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
                 allinpayRequestModel.BUS_INFO = "01";
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -207,7 +214,8 @@ namespace Allinpay
                 allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID;//*
                 allinpayRequestModel.ORIG_DATE = "0830";
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();//*
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel); 
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -232,7 +240,8 @@ namespace Allinpay
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY;//*
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();
                 allinpayRequestModel.BUS_INFO = "01";
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -255,7 +264,8 @@ namespace Allinpay
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();
                 allinpayRequestModel.BUS_INFO = "01";
                 allinpayRequestModel.CARDNO = "4761340000000035";
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel); 
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -280,7 +290,8 @@ namespace Allinpay
                 allinpayRequestModel.DCC_FLAG = "EDC";
                 allinpayRequestModel.BUS_INFO = "01";
                 allinpayRequestModel.CARDNO = "4761340000000035";
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel); 
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -303,7 +314,8 @@ namespace Allinpay
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();
                 allinpayRequestModel.BUS_INFO = "01";
                 allinpayRequestModel.CARDNO = "4761340000000035";
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -321,7 +333,8 @@ namespace Allinpay
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = "01";
                 allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID;  //*
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -337,7 +350,8 @@ namespace Allinpay
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = "01";
                 allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID;  //*
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel); 
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -353,7 +367,8 @@ namespace Allinpay
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = "01";
                 allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID;  //*
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -371,7 +386,8 @@ namespace Allinpay
                 allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID;  //*
                 allinpayRequestModel.ORIG_TRACE_NO = "0830";  //*
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();
-                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -386,9 +402,8 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID;  //*
-                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);
-                Clear();
-                richTextBox_output.Text = result.ToString();
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
+                Result(result);
             }
             catch (Exception ex)
             {
@@ -399,12 +414,16 @@ namespace Allinpay
 
         private void button_Clear_Click(object sender, EventArgs e)
         {
-            Clear();
-        }
-
-        private void Clear()
-        {
             richTextBox_output.Text = " ";
         }
+
+        private void Result(RequestClient.PostResponse result)
+        {
+            richTextBox_output.Text = " ";
+            if (result.StatusCode == 200)
+            { richTextBox_output.Text = result.Status.ToString(); }
+            else { richTextBox_output.Text = result.Error.Description.ToString(); }
+        }
+
     }
 }

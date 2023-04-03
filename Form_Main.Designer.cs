@@ -215,7 +215,7 @@
             this.button_LoadMKey.Name = "button_LoadMKey";
             this.button_LoadMKey.Size = new System.Drawing.Size(75, 23);
             this.button_LoadMKey.TabIndex = 3;
-            this.button_LoadMKey.Text = "LoadMKey";
+            this.button_LoadMKey.Text = "MasterKey";
             this.button_LoadMKey.UseVisualStyleBackColor = true;
             this.button_LoadMKey.Click += new System.EventHandler(this.button_LoadMKey_Click);
             // 
