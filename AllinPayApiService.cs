@@ -25,12 +25,12 @@ namespace Allinpay
         }
         private void CreateHttpWebRequest(string method, string urlpart = null)
         {
-            string url = domain + controllerUrl + urlpart;
+            string url = "http://" + domain + ":9801/trans";
+            //string url = domain + controllerUrl + urlpart;
             httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest.Method = method;
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Accept = "application/json";
-            //httpWebRequest.TransferEncoding = "UTF-8";
+            httpWebRequest.ContentType = "application/json; charset=utf-8";
+            //httpWebRequest.Accept = "application/json";
             httpWebRequest.Headers.Add("authorization", "Bearer " + accessToken);
         }
 
@@ -40,11 +40,11 @@ namespace Allinpay
             {
                 string Stringify = JsonConvert.SerializeObject(allinpayRequestModel);
                 CreateHttpWebRequest("POST");
-                string serializedObject = string.Format("{{\"InsertEntity\":{0}}}", Stringify);
+                //string serializedObject = string.Format("{{\"InsertEntity\":{0}}}", Stringify);
                 //string serializedObject = string.Format("{{\"InsertEntity\":{0}}}", Stringify);
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
-                    streamWriter.Write(serializedObject);
+                    streamWriter.Write(Stringify);
                 }
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
@@ -54,7 +54,24 @@ namespace Allinpay
             }
             catch (Exception ex)
             {
-                //dataResponse = GetErrorWebResponse.GetResponse(500, ex.Message);
+                //         public class PostResponse
+                //{
+                //    public string Status { get; set; }
+                //    public int StatusCode { get; set; }
+                //    public ErrorResponse Error { get; set; }
+                //    public int? Id { get; set; }
+                //    public PostResponse()
+                //    {
+                //        Error = new ErrorResponse();
+                //    }
+                //}
+                PostResponse postResponse = new PostResponse();
+                postResponse.Status = "Error";
+                postResponse.StatusCode = 500;
+                postResponse.Error.Code = 500;
+                postResponse.Error.Description = ex.InnerException.Message.ToString();
+                response = JsonConvert.SerializeObject(postResponse);
+                RequestClient.WriteErrorLog("Error at Post. ", "--AllinPayApiService--", ex);
             }
 
             return JsonConvert.DeserializeObject<PostResponse>(response);
