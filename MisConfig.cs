@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace Allinpay
 {
@@ -11,19 +12,8 @@ namespace Allinpay
         /**
          * 请求地址 - request address
          */
-        public static string URL;
-        public static string GetURL()
-        {
-            if (PosEnum.LANDI.equals(MisConfig.POS))
-            {
-                URL = "http://" + IP + ":9801/trans";
-            }
-            else
-            {
-                URL = "http://" + IP + ":10021/allinpay";
-            }
-            return URL;
-        }
+        public static string URL = "http://192.168.1.110:9801/tran"; // LANDI
+        //public static string URL = "http://" + IP + ":10021/allinpay"; // UROVO
 
         /**
          * 交易币种 - transaction currency
@@ -42,12 +32,5 @@ namespace Allinpay
          */
         public static string POS = "LANDI";
         //    public static string POS = "UROVO";       
-
-        //static {
-        //if (PosEnum.LANDI.equals(MisConfig.POS)) {
-        //    URL = "http://" + IP + ":9801/trans";
-        //} else {
-        //    URL = "http://" + IP + ":10021/allinpay";
-        //}
     }
 }

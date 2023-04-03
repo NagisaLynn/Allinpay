@@ -51,9 +51,7 @@
   <ItemGroup>
     <Compile Include="AllinPayApiService.cs" />
     <Compile Include="clsAllinpayModel.cs" />
-    <Compile Include="HttpUtils.cs" />
     <Compile Include="MisConfig.cs" />
-    <Compile Include="ConfigurationHelpers.cs" />
     <Compile Include="Form_Main.cs">
       <SubType>Form</SubType>
     </Compile>

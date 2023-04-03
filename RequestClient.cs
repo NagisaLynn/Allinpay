@@ -1,31 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Allinpay
 {
     public class RequestClient
     {
-        public static string post(Map<String, String> param)
+        public class PostResponse
         {
-            try
+            public string Status { get; set; }
+            public int StatusCode { get; set; }
+            public ErrorResponse Error { get; set; }
+            public int? Id { get; set; }
+            public PostResponse()
             {
-                if (PosEnum.LANDI.equals(MisConfig.POS))
-                {
-                    return HttpUtils.postForm(MisConfig.URL, param);
-                }
-                else
-                {
-                    return HttpUtils.post(MisConfig.URL, param);
-                }
-            }
-            catch(Exception ex)
-            {
-
+                Error = new ErrorResponse();
             }
         }
+
+        public class ErrorResponse
+        {
+            public int Code { get; set; }
+            public string Description { get; set; }
+        }
+
+        #region 
+
+        public async Task<PostResponse> PostAllinPayApiService(AllinpayRequestModel allinpayRequestModel)
+        {
+            PostResponse Response = new PostResponse();
+            try
+            {
+                AllinPayApiService APIService = new AllinPayApiService(MisConfig.URL, null);
+                Response = await APIService.Post(allinpayRequestModel);
+                return Response;
+            }
+            catch (Exception ex)
+            {
+                return Response;
+            }
+        }
+        #endregion
 
         public static string getTransTraceNo()
         {
