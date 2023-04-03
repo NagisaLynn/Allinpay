@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Allinpay.Properties;
+using System;
 using System.Windows.Forms;
 
 namespace Allinpay
@@ -32,30 +33,378 @@ namespace Allinpay
 
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+
+        #region 3.1 Collection Payment Tender
+        // 3.1.1 Collection – Bank card 
+        private async void button_TenderCCard_Click(object sender, EventArgs e)
         {
-            AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
-            allinpayRequestModel.OPER_NO = "01";
-            allinpayRequestModel.BUSINESS_ID = "500100001";
-            allinpayRequestModel.AMOUNT = "000000000010";
-            allinpayRequestModel.CURRENCY = MisConfig.CURRENCY;
-            allinpayRequestModel.TRANS_ORDER_NO = RequestClient.getTransTraceNo();
-            allinpayRequestModel.BUS_INFO = "01";
-            await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID; //*
+                allinpayRequestModel.AMOUNT = "000000000010"; //*
+                allinpayRequestModel.MEMO = "Payment Card";
+                allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
+                allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
+                allinpayRequestModel.TRANS_ORDER_NO = RequestClient.getTransOrderNo(); //*
+                allinpayRequestModel.DCC_FLAG = "EDC"; //*
+                allinpayRequestModel.BUS_INFO = "01"; 
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_TenderCCard_Click. ", "--Payment Tender--", ex);
+            }
         }
 
+        // 3.1.2 Collection-code Scanning - Scan Customer QR Code
+        private async void button_TenderQRScan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID; //*
+                allinpayRequestModel.AMOUNT = "000000000010"; //*
+                allinpayRequestModel.MEMO = "Payment QR Scan";
+                allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
+                allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
+                allinpayRequestModel.TRANS_ORDER_NO = RequestClient.getTransOrderNo(); //*
+                allinpayRequestModel.BUS_INFO = "01";
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_TenderQRScan_Click. ", "--Payment Tender--", ex);
+            }
+        }
 
-        //public void auth() throws IOException
-        //{
-        //    Map<String, String> param = new HashMap<>();
-        //param.put("OPER_NO", "01");
-        //param.put("BUSINESS_ID", "500100001");
-        //param.put("AMOUNT", "000000000010");
-        //param.put("CURRENCY", MisConfig.CURRENCY);
-        //param.put("TRANS_TRACE_NO", RequestClient.getTransTraceNo());
-        //param.put("BUS_INFO", "01");
-        //RequestClient.post(param);
-        //}
+        // 3.1.3 Collection – QR Code Payment - Scan Merchant QR Code - Prompt QR code let customer to scan
+        private async void button_TenderQRImage_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID; //*
+                allinpayRequestModel.AMOUNT = "000000000010"; //*
+                allinpayRequestModel.MEMO = "Payment QR Image";
+                allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
+                allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
+                allinpayRequestModel.TRANS_ORDER_NO = RequestClient.getTransOrderNo(); //*
+                allinpayRequestModel.BUS_INFO = "01";
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_TenderQRImage_Click. ", "--Payment Tender--", ex);
+            }
+        }
+        #endregion  end of 3.1 Collection Payment Tender
 
+        #region 3.2 Void 
+        // 3.2.1 Void – bank card
+        private async void button_VoidCard_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID; //*
+                allinpayRequestModel.AMOUNT = "000000000010"; //*
+                allinpayRequestModel.MEMO = "Void Card";
+                allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
+                allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
+                allinpayRequestModel.ORIG_TRACE_NO = "45"; //* // Original system reference number
+                allinpayRequestModel.BUS_INFO = "01";
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_VoidCard_Click. ", "--Void--", ex);
+            }
+        }
+
+        // 3.2.2 Void – void by scanning code 
+        private async void button_VoidQR_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID; //*
+                allinpayRequestModel.AMOUNT = "000000000010"; //*
+                allinpayRequestModel.MEMO = "Void QR";
+                allinpayRequestModel.CURRENCY = MisConfig.CURRENCY;
+                allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
+                allinpayRequestModel.ORIG_TRACE_NO = "45"; //* // Original system reference number
+                allinpayRequestModel.BUS_INFO = "01";
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_VoidQR_Click. ", "--Void--", ex);
+            }
+        }
+        #endregion  end of 3.2 Void 
+
+        #region 3.3 Refund
+        // 3.3.1 Refund – bank card 
+        private async void button_RefundCard_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID; //*
+                allinpayRequestModel.AMOUNT = "000000000010"; //*
+                allinpayRequestModel.MEMO = "Void Card";
+                allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
+                allinpayRequestModel.ORIG_REF_NO = "45"; //*
+                allinpayRequestModel.ORIG_DATE = "45"; //*
+                allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();   //*           
+                allinpayRequestModel.BUS_INFO = "01";
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_RefundCard_Click. ", "--Refund--", ex);
+            }
+        }
+
+        // 3.3.2 Refund-Refund by Scanning Code
+        private async void button_RefundQR_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID; //*
+                allinpayRequestModel.AMOUNT = "000000000010"; //*
+                allinpayRequestModel.MEMO = "Void QR";
+                allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
+                allinpayRequestModel.ORIG_TRANS_TICKET_NO = "45"; //*
+                allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
+                allinpayRequestModel.BUS_INFO = "01";
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_RefundQR_Click. ", "--Refund--", ex);
+            }
+        }
+        #endregion end of 3.3 Refund
+
+        #region 3.4 Inquiry 
+        // 3.4.1 Transaction Result Inquiry
+        private async void button_TestQuery_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID;//*
+                allinpayRequestModel.ORIG_DATE = "0830";
+                allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();//*
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_TestQuery_Click. ", "--Other--", ex);
+            }
+            
+        }
+        #endregion end of 3.4 Inquiry 
+
+
+        #region 3.5. Authorization 
+        // 3.5.1 Pre-authorization 
+        private async void button_Auth_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID;//*
+                allinpayRequestModel.AMOUNT = "000000000010";//*
+                allinpayRequestModel.MEMO = "Auth";
+                allinpayRequestModel.CURRENCY = MisConfig.CURRENCY;//*
+                allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();
+                allinpayRequestModel.BUS_INFO = "01";
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_Auth_Click. ", "--Auth--", ex);
+            }
+        }
+
+        // 3.5.2 Pre-authorization Voiding 
+        private async void button_AuthCancel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID; //*
+                allinpayRequestModel.AMOUNT = "000000000010"; //*
+                allinpayRequestModel.MEMO = "Auth Cancel";
+                allinpayRequestModel.CURRENCY = MisConfig.CURRENCY;
+                allinpayRequestModel.ORIG_AUTH_NO = ""; //*
+                allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();
+                allinpayRequestModel.BUS_INFO = "01";
+                allinpayRequestModel.CARDNO = "4761340000000035";
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_AuthCancel_Click. ", "--Auth--", ex);
+            }
+        }
+
+        // 3.5.3 Pre-authorization Completion 
+        private async void button_AuthConfirm_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID; //*
+                allinpayRequestModel.AMOUNT = "000000000010"; //*
+                allinpayRequestModel.MEMO = "Auth Tender";
+                allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
+                allinpayRequestModel.ORIG_AUTH_NO = ""; //*
+                allinpayRequestModel.ORIG_DATE = ""; //*
+                allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();     
+                allinpayRequestModel.DCC_FLAG = "EDC";
+                allinpayRequestModel.BUS_INFO = "01";
+                allinpayRequestModel.CARDNO = "4761340000000035";
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_AuthConfirm_Click. ", "--Auth--", ex);
+            }
+        }
+
+        // 3.5.4 Voiding of Pre-authorization Completion
+        private async void button_AuthCancelConfirm_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID; //*
+                allinpayRequestModel.AMOUNT = "000000000010"; //*
+                allinpayRequestModel.MEMO = "Auth Cancel Confirm";
+                allinpayRequestModel.CURRENCY = MisConfig.CURRENCY;
+                allinpayRequestModel.ORIG_TRACE_NO =""; //*
+                allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();
+                allinpayRequestModel.BUS_INFO = "01";
+                allinpayRequestModel.CARDNO = "4761340000000035";
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_AuthCancelConfirm_Click. ", "--Auth--", ex);
+            }
+        }
+        #endregion end of 3.5. Authorization 
+
+        #region 3.6 Accessibility 
+        // 3.6.1 Receiving Terminal Master Key 
+        private async void button_LoadMKey_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID;  //*
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_LoadMKey_Click. ", "--Other--", ex);
+            }
+        }
+
+        // 3.6.2 Terminal Sign-on 
+        private async void button_SignIn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID;  //*
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_SignIn_Click. ", "--Other--", ex);
+            }
+        }
+
+        // 3.6.3 Terminal Settlement 
+        private async void button_Settle_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID;  //*
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_Settle_Click. ", "--Other--", ex);
+            }
+        }
+
+        // 3.6.4 Reprinting a Receipt & 3.6.5 Reprinting the Purchase Order 
+        private async void button_Reprint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.OPER_NO = "01";
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID;  //*
+                allinpayRequestModel.ORIG_TRACE_NO = "0830";  //*
+                allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();
+                await requestClient.PostAllinPayApiService(allinpayRequestModel);
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_Reprint_Click. ", "--Other--", ex);
+            }
+        }
+
+        // 3.7.1 Getting Device Information
+        private async void button_DeviceInfo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
+                allinpayRequestModel.BUSINESS_ID = MisConfig.BUSINESS_ID;  //*
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);
+                Clear();
+                richTextBox_output.Text = result.ToString();
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at button_DeviceInfo_Click. ", "--Other--", ex);
+            }
+        }
+        #endregion end of Others
+
+        private void button_Clear_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
+        private void Clear()
+        {
+            richTextBox_output.Text = " ";
+        }
     }
 }
