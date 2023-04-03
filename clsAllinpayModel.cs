@@ -17,15 +17,19 @@ namespace Allinpay
         public string BUSINESS_ID { get; set; } //  Business type
         public string AMOUNT { get; set; } //  Amount (12 digit-number, cent as unit,completes it by adding 0 on left if the digit numbers are insufficient)
         public string MEMO { get; set; } //  Meomo field
+
         public string ORIG_TRACE_NO { get; set; } // Original transaction document number
         public string ORIG_TRANS_TICKET_NO { get; set; } // Original transaction number
-        public DateTime ORIG_DATE { get; set; } //  Original transaction date
-
+        public string ORIG_REF_NO { get; set; } // Original transaction document number
+        public string ORIG_DATE { get; set; } //  Original transaction date
+        public string ORIG_AUTH_NO { get; set; }
+        
         public string TRANS_TRACE_NO { get; set; } //  Transaction unique identifier
         public string TRANS_ORDER_NO { get; set; } //  Commodity order number
         public string CURRENCY { get; set; } //  Currency (refer to Appendix-Currency)
         public string DCC_FLAG { get; set; } //  Default EDC transaction （DCC/EDC）
         public string BUS_INFO { get; set; } //  Expand field
+        public string CARDNO { get; set; } //  Expand field
     }
 
     public class AllinpayRespondModel
@@ -42,7 +46,7 @@ namespace Allinpay
         public string ORIG_TRACE_NO { get; set; } //  Original Swift number
         public string ORIG_REF_NO { get; set; } // Original system reference number
         
-        public DateTime EXP_DATE { get; set; } //  Valid Date
+        public string EXP_DATE { get; set; } //  Valid Date
         public string BATCH_NO { get; set; } //  Batch number
 
         public string MERCH_ID { get; set; } //  Business number
@@ -54,14 +58,14 @@ namespace Allinpay
         public string REJCODE { get; set; } //  Return code
         public string CARD_ORGN { get; set; } //  Card organization
         public string CARDNO { get; set; } //  Card number
-        public DateTime DATE { get; set; } //  Transaction date
-        public DateTime TIME { get; set; } //  Transaction time
+        public string DATE { get; set; } //  Transaction date
+        public string TIME { get; set; } //  Transaction time
 
         public string REJCODE_CN { get; set; } //  Return code explanation
         public string MEMO { get; set; } //  Memo field
         public string TRANS_TRACE_NO { get; set; } //  Transaction unique identifier
         public string BUS_INFO { get; set; } //  Expand field
-        public DateTime ORIG_DATE { get; set; } //  OriTransaction date
+        public string ORIG_DATE { get; set; } //  OriTransaction date
         public string TRANS_CHANNEL { get; set; } //  Payment channel
 
         public string PRINT_FLAG { get; set; } // Print mark
