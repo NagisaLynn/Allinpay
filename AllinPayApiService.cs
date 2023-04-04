@@ -54,17 +54,6 @@ namespace Allinpay
             }
             catch (Exception ex)
             {
-                //         public class PostResponse
-                //{
-                //    public string Status { get; set; }
-                //    public int StatusCode { get; set; }
-                //    public ErrorResponse Error { get; set; }
-                //    public int? Id { get; set; }
-                //    public PostResponse()
-                //    {
-                //        Error = new ErrorResponse();
-                //    }
-                //}
                 PostResponse postResponse = new PostResponse();
                 postResponse.Status = "Error";
                 postResponse.StatusCode = 500;

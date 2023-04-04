@@ -43,7 +43,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "100100001"; //* Refer the documentation for the business ID - more like payment code
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_SALE_BANK).ToString(); //* Refer the documentation for the business ID - more like payment code
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text);  RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Payment Card";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
@@ -67,7 +67,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "100300001"; //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_SALE_QR).ToString(); //*
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Payment QR Scan";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
@@ -90,7 +90,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "100300002";//*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_SALE_SCAN).ToString();//*
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Payment QR Image";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
@@ -115,7 +115,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "200100001 "; //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_VOID_BANK).ToString(); ; //*
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Void Card";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
@@ -138,7 +138,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "200300001"; //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_VOID_QR).ToString(); //*
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Void QR";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY;
@@ -163,7 +163,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "300100001"; //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_REFUND_BANK).ToString(); //*
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Void Card";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
@@ -187,7 +187,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "300300001"; //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_REFUND_QR).ToString(); //*
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Void QR";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
@@ -212,7 +212,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "600000002";//*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_QUERY_ORDER_RESULT).ToString();//*
                 allinpayRequestModel.ORIG_DATE = "0830";
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();//*
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel); 
@@ -235,7 +235,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "500100001";//*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_AUTH_BANK).ToString();//*
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Auth";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY;//*
@@ -257,7 +257,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "510100001"; //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_AUTH_VOID_BANK).ToString();//*
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Auth Cancel";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY;
@@ -281,7 +281,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "520100001"; //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_AUTH_CM_BANK).ToString(); //*
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Auth Tender";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
@@ -307,7 +307,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "530100001"; //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_AUTH_CM_VOID_BANK).ToString(); ; //*
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Auth Cancel Confirm";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY;
@@ -333,7 +333,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "900100030";  //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_MANAGER_TRANS_LOAD_MKEY).ToString(); //*
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
                 Result(result);
             }
@@ -350,7 +350,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "900100001";  //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_MANAGER_TRANS_LOGON).ToString();  //*
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel); 
                 Result(result);
             }
@@ -367,7 +367,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "900100002";  //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_MANAGER_TRANS_SETTLE).ToString();  //*
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
                 Result(result);
             }
@@ -384,7 +384,7 @@ namespace Allinpay
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = "900100010";  //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_MANAGER_TRANS_REPRINT).ToString(); ;  //*
                 allinpayRequestModel.ORIG_TRACE_NO = "0830";  //*
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
@@ -402,7 +402,7 @@ namespace Allinpay
             try
             {
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
-                allinpayRequestModel.BUSINESS_ID = "900300005";  //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_MANAGER_SERVICE_GET_BASIC_INFO).ToString(); //*
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
                 Result(result);
             }
