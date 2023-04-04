@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Data.Entity.Validation;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Allinpay
 {
@@ -40,11 +41,34 @@ namespace Allinpay
             }
             catch (Exception ex)
             {
-                RequestClient.WriteErrorLog("Error at PostAllinPayApiService. ", "--RequestClient--", ex);
-                return Response;
+                PostResponse postResponse = new PostResponse();
+                postResponse.Status = "Error";
+                postResponse.StatusCode = 500;
+                postResponse.Error.Code = 500;
+                postResponse.Error.Description = ex.InnerException.Message.ToString();
+                return postResponse;
             }
         }
         #endregion
+
+        public static string getAmountin12Digit(string amount)
+        {
+            try
+            {
+                // Convert amount to cents
+                int cents = (int)(double.Parse(amount) * 100);
+
+                // Convert cents to a 12-digit number as a string
+                string result = cents.ToString().PadLeft(12, '0');
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                RequestClient.WriteErrorLog("Error at getAmountin12Digit. ", "--RequestClient--", ex);
+                return null;
+            }
+        }
 
         public static string getTransTraceNo()
         {
