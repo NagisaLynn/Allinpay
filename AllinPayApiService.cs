@@ -51,6 +51,10 @@ namespace Allinpay
                 {
                     response = await streamReader.ReadToEndAsync();
                 }
+                PostResponse postResponse = new PostResponse();
+                postResponse.Status = response;
+                postResponse.StatusCode = 200;
+                response = JsonConvert.SerializeObject(postResponse);
             }
             catch (Exception ex)
             {

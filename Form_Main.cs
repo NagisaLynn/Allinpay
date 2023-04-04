@@ -34,6 +34,11 @@ namespace Allinpay
             textBox_Amount.Text = Amount.ToString();
         }
 
+        public void StartMessage()
+        {
+            richTextBox_output.Text = "Please Wait";
+        }
+
 
         #region 3.1 Collection Payment Tender
         // 3.1.1 Collection – Bank card 
@@ -41,6 +46,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_SALE_BANK).ToString(); //* Refer the documentation for the business ID - more like payment code
@@ -65,6 +71,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_SALE_QR).ToString(); //*
@@ -88,6 +95,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_SALE_SCAN).ToString();//*
@@ -113,6 +121,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_VOID_BANK).ToString(); ; //*
@@ -136,6 +145,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_VOID_QR).ToString(); //*
@@ -161,6 +171,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_REFUND_BANK).ToString(); //*
@@ -185,6 +196,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_REFUND_QR).ToString(); //*
@@ -210,6 +222,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_QUERY_ORDER_RESULT).ToString();//*
@@ -233,6 +246,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_AUTH_BANK).ToString();//*
@@ -255,6 +269,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_AUTH_VOID_BANK).ToString();//*
@@ -279,6 +294,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_AUTH_CM_BANK).ToString(); //*
@@ -305,6 +321,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_AUTH_CM_VOID_BANK).ToString(); ; //*
@@ -331,6 +348,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_MANAGER_TRANS_LOAD_MKEY).ToString(); //*
@@ -348,6 +366,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_MANAGER_TRANS_LOGON).ToString();  //*
@@ -365,6 +384,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_MANAGER_TRANS_SETTLE).ToString();  //*
@@ -382,6 +402,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_MANAGER_TRANS_REPRINT).ToString(); ;  //*
@@ -401,6 +422,7 @@ namespace Allinpay
         {
             try
             {
+                StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_MANAGER_SERVICE_GET_BASIC_INFO).ToString(); //*
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
@@ -421,10 +443,45 @@ namespace Allinpay
         private void Result(RequestClient.PostResponse result)
         {
             richTextBox_output.Text = " ";
+            string output = "";
             if (result.StatusCode == 200)
-            { richTextBox_output.Text = result.Status.ToString(); }
+            {
+                for (int i = 0; i < result.Status.Length; i++)
+                {
+                    char c = result.Status[i];
+                    output += c;
+
+                    // Check if the current character is a comma ',' and not within a JSON object or array
+                    if (c == ',' && !IsWithinJson(result.Status, i))
+                    {
+                        output += Environment.NewLine; // Add a new line character
+                    }
+                }
+                richTextBox_output.Text = result.Status.ToString(); }
             else { richTextBox_output.Text = result.Error.Description.ToString(); }
         }
+
+        public bool IsWithinJson(string jsonString, int index)
+        {
+            int depth = 0;
+
+            for (int i = 0; i < index; i++)
+            {
+                char c = jsonString[i];
+
+                if (c == '{' || c == '[')
+                {
+                    depth++;
+                }
+                else if (c == '}' || c == ']')
+                {
+                    depth--;
+                }
+            }
+
+            return depth > 0;
+        }
+
 
     }
 }
