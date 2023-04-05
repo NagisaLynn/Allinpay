@@ -4,6 +4,7 @@ using System.IO;
 using System.Data.Entity.Validation;
 using System.Text;
 using Newtonsoft.Json;
+using System.Windows.Forms;
 
 namespace Allinpay
 {
@@ -124,7 +125,7 @@ namespace Allinpay
         {
             try
             {
-                string locationDirectory = Path.Combine(@"D:\", string.Format("AllinPay/EventLogs/"));
+                string locationDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format("EventLogs/"));
 
                 if (!Directory.Exists(locationDirectory))
                     Directory.CreateDirectory(locationDirectory);
@@ -153,7 +154,7 @@ namespace Allinpay
         {
             try
             {
-                string locationDirectory = Path.Combine(@"D:\", string.Format("AllinPay/ErrorLogs/"));
+                string locationDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format("ErrorLogs/"));
 
                 if (!Directory.Exists(locationDirectory))
                     Directory.CreateDirectory(locationDirectory);
