@@ -60,20 +60,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllinPayApiService.cs" />
-    <Compile Include="clsAllinpayModel.cs" />
-    <Compile Include="ExceptionExtensions.cs" />
-    <Compile Include="MisConfig.cs" />
-    <Compile Include="Form_Main.cs">
+    <Compile Include="classes\AllinPayApiService.cs" />
+    <Compile Include="classes\clsAllinpayModel.cs" />
+    <Compile Include="classes\ExceptionExtensions.cs" />
+    <Compile Include="classes\MisConfig.cs" />
+    <Compile Include="classes\Form_Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_Main.Designer.cs">
+    <Compile Include="classes\Form_Main.Designer.cs">
       <DependentUpon>Form_Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequestClient.cs" />
-    <EmbeddedResource Include="Form_Main.resx">
+    <Compile Include="classes\RequestClient.cs" />
+    <EmbeddedResource Include="classes\Form_Main.resx">
       <DependentUpon>Form_Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -86,7 +86,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="Document\POS Terminal MIS Cash Register Interface %28Landi A8%29 .pdf" />
-    <None Include="packages.config" />
+    <None Include="classes\packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -98,7 +98,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="classes\App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Document\Readme.txt" />
