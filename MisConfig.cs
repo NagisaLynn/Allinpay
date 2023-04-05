@@ -23,6 +23,8 @@ namespace Allinpay
         public static string OPER_NO = "SmartEnergy";
         public static string CURRENCY = "SGD";
         public static string IP = "192.168.137.131";
+        public static string ORIG_DATE = DateTime.Now.ToString("ddMMyyyy");
+        public static string CARDNO = "4761340000000035";
 
         #region 4. Parameters Description
         // Card Logo ( CARD_ORGN Property

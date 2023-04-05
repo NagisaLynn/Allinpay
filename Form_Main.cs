@@ -37,6 +37,7 @@ namespace Allinpay
         public void StartMessage()
         {
             richTextBox_output.Text = "Please Wait";
+            textBox_Trans.Text = "";
         }
 
 
@@ -129,7 +130,7 @@ namespace Allinpay
                 allinpayRequestModel.MEMO = "Void Card";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
-                allinpayRequestModel.ORIG_TRACE_NO = "45"; //* // Original system reference number
+                allinpayRequestModel.ORIG_TRACE_NO = textBox_Trans.Text.ToString(); //* // Original system reference number
                 allinpayRequestModel.BUS_INFO = "01";
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel); 
                 Result(result);
@@ -153,7 +154,7 @@ namespace Allinpay
                 allinpayRequestModel.MEMO = "Void QR";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY;
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
-                allinpayRequestModel.ORIG_TRACE_NO = "45"; //* // Original system reference number
+                allinpayRequestModel.ORIG_TRACE_NO = textBox_Trans.Text.ToString(); //*  Original system reference number
                 allinpayRequestModel.BUS_INFO = "01";
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
                 Result(result);
@@ -178,8 +179,8 @@ namespace Allinpay
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Void Card";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
-                allinpayRequestModel.ORIG_REF_NO = "45"; //*
-                allinpayRequestModel.ORIG_DATE = "45"; //*
+                allinpayRequestModel.ORIG_REF_NO = textBox_Trans.Text.ToString(); //*
+                allinpayRequestModel.ORIG_DATE = MisConfig.ORIG_DATE; //*
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();   //*           
                 allinpayRequestModel.BUS_INFO = "01";
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
@@ -203,7 +204,7 @@ namespace Allinpay
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Void QR";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
-                allinpayRequestModel.ORIG_TRANS_TICKET_NO = "45"; //*
+                allinpayRequestModel.ORIG_TRANS_TICKET_NO = textBox_Trans.Text.ToString(); //*
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
                 allinpayRequestModel.BUS_INFO = "01";
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
@@ -226,7 +227,7 @@ namespace Allinpay
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
                 allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_QUERY_ORDER_RESULT).ToString();//*
-                allinpayRequestModel.ORIG_DATE = "0830";
+                allinpayRequestModel.ORIG_DATE = MisConfig.ORIG_DATE;
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();//*
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel); 
                 Result(result);
@@ -276,10 +277,10 @@ namespace Allinpay
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Auth Cancel";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY;
-                allinpayRequestModel.ORIG_AUTH_NO = ""; //*
+                allinpayRequestModel.ORIG_AUTH_NO = textBox_Trans.Text.ToString();  //*
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();
                 allinpayRequestModel.BUS_INFO = "01";
-                allinpayRequestModel.CARDNO = "4761340000000035";
+                allinpayRequestModel.CARDNO = MisConfig.CARDNO;
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel); 
                 Result(result);
             }
@@ -301,12 +302,12 @@ namespace Allinpay
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Auth Tender";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
-                allinpayRequestModel.ORIG_AUTH_NO = ""; //*
-                allinpayRequestModel.ORIG_DATE = ""; //*
+                allinpayRequestModel.ORIG_AUTH_NO = textBox_Trans.Text.ToString(); //*
+                allinpayRequestModel.ORIG_DATE = MisConfig.ORIG_DATE;//*
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();     
                 allinpayRequestModel.DCC_FLAG = "EDC";
                 allinpayRequestModel.BUS_INFO = "01";
-                allinpayRequestModel.CARDNO = "4761340000000035";
+                allinpayRequestModel.CARDNO = MisConfig.CARDNO;
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel); 
                 Result(result);
             }
@@ -328,10 +329,10 @@ namespace Allinpay
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Auth Cancel Confirm";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY;
-                allinpayRequestModel.ORIG_TRACE_NO =""; //*
+                allinpayRequestModel.ORIG_TRACE_NO = textBox_Trans.Text.ToString(); //*
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();
                 allinpayRequestModel.BUS_INFO = "01";
-                allinpayRequestModel.CARDNO = "4761340000000035";
+                allinpayRequestModel.CARDNO = MisConfig.CARDNO;
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
                 Result(result);
             }
@@ -405,8 +406,8 @@ namespace Allinpay
                 StartMessage();
                 AllinpayRequestModel allinpayRequestModel = new AllinpayRequestModel();
                 allinpayRequestModel.OPER_NO = MisConfig.OPER_NO;
-                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_MANAGER_TRANS_REPRINT).ToString(); ;  //*
-                allinpayRequestModel.ORIG_TRACE_NO = "0830";  //*
+                allinpayRequestModel.BUSINESS_ID = ((int)MisConfig.Business_Type.BUSI_MANAGER_TRANS_REPRINT).ToString();  //*
+                allinpayRequestModel.ORIG_TRACE_NO = textBox_Trans.Text.ToString();  //*
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();
                 var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
                 Result(result);
@@ -455,13 +456,16 @@ namespace Allinpay
                     if (c == ',' && !IsWithinJson(result.Status, i))
                     {
                         output += Environment.NewLine; // Add a new line character
+                        Console.WriteLine($"Added new line at index {i}");
                     }
                 }
-                richTextBox_output.Text = result.Status.ToString(); }
+                richTextBox_output.Text = result.Status.ToString(); 
+                RequestClient.WriteEventLog(result.Status.ToString());
+            }
             else { richTextBox_output.Text = result.Error.Description.ToString(); }
         }
 
-        public bool IsWithinJson(string jsonString, int index)
+        bool IsWithinJson(string jsonString, int index)
         {
             int depth = 0;
 
@@ -479,9 +483,8 @@ namespace Allinpay
                 }
             }
 
+            Console.WriteLine($"Index {index} has depth {depth}");
             return depth > 0;
         }
-
-
     }
 }

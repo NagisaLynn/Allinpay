@@ -55,6 +55,8 @@
             this.button_Clear = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_Amount = new System.Windows.Forms.TextBox();
+            this.textBox_Trans = new System.Windows.Forms.TextBox();
+            this.label_Ref = new System.Windows.Forms.Label();
             this.groupBox_Payment.SuspendLayout();
             this.groupBox_Void.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -335,14 +337,32 @@
             // 
             this.textBox_Amount.Location = new System.Drawing.Point(59, 12);
             this.textBox_Amount.Name = "textBox_Amount";
-            this.textBox_Amount.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Amount.Size = new System.Drawing.Size(65, 20);
             this.textBox_Amount.TabIndex = 10;
+            // 
+            // textBox_Trans
+            // 
+            this.textBox_Trans.Location = new System.Drawing.Point(223, 12);
+            this.textBox_Trans.Name = "textBox_Trans";
+            this.textBox_Trans.Size = new System.Drawing.Size(145, 20);
+            this.textBox_Trans.TabIndex = 12;
+            // 
+            // label_Ref
+            // 
+            this.label_Ref.AutoSize = true;
+            this.label_Ref.Location = new System.Drawing.Point(165, 15);
+            this.label_Ref.Name = "label_Ref";
+            this.label_Ref.Size = new System.Drawing.Size(57, 13);
+            this.label_Ref.TabIndex = 11;
+            this.label_Ref.Text = "Reference";
             // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 495);
+            this.Controls.Add(this.textBox_Trans);
+            this.Controls.Add(this.label_Ref);
             this.Controls.Add(this.textBox_Amount);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button_Clear);
@@ -395,6 +415,8 @@
         private System.Windows.Forms.Button button_Clear;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_Amount;
+        private System.Windows.Forms.TextBox textBox_Trans;
+        private System.Windows.Forms.Label label_Ref;
     }
 }
 
