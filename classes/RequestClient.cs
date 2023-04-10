@@ -36,6 +36,7 @@ namespace Allinpay
             PostResponse Response = new PostResponse();
             try
             {
+                RequestClient.WriteEventLog("Request  : " + JsonConvert.SerializeObject(allinpayRequestModel));
                 AllinPayApiService APIService = new AllinPayApiService(MisConfig.IP, null);
                 Response = await APIService.Post(allinpayRequestModel);
                 return Response;

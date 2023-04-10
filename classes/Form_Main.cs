@@ -37,7 +37,6 @@ namespace Allinpay
         public void StartMessage()
         {
             richTextBox_output.Text = "Please Wait";
-            textBox_Trans.Text = "";
         }
 
 
@@ -180,6 +179,7 @@ namespace Allinpay
                 allinpayRequestModel.MEMO = "Void Card";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
                 allinpayRequestModel.ORIG_REF_NO = textBox_Trans.Text.ToString(); //*
+                //allinpayRequestModel.ORIG_TRACE_NO = MisConfig.ORIG_TRACE_NO; // will not prompt in terminal if this field is not empty
                 allinpayRequestModel.ORIG_DATE = MisConfig.ORIG_DATE; //*
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo();   //*           
                 allinpayRequestModel.BUS_INFO = "01";
@@ -204,10 +204,12 @@ namespace Allinpay
                 allinpayRequestModel.AMOUNT = RequestClient.getAmountin12Digit(textBox_Amount.Text); //*
                 allinpayRequestModel.MEMO = "Void QR";
                 allinpayRequestModel.CURRENCY = MisConfig.CURRENCY; //*
-                allinpayRequestModel.ORIG_TRANS_TICKET_NO = textBox_Trans.Text.ToString(); //*
+                allinpayRequestModel.ORIG_TRANS_TICKET_NO = textBox_Trans.Text.ToString();  //*
+                //allinpayRequestModel.ORIG_TRACE_NO = MisConfig.ORIG_TRACE_NO; // will not prompt in terminal if this field is not empty
+                allinpayRequestModel.ORIG_DATE = MisConfig.ORIG_DATE;
                 allinpayRequestModel.TRANS_TRACE_NO = RequestClient.getTransTraceNo(); //*
                 allinpayRequestModel.BUS_INFO = "01";
-                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);  
+                var result = await requestClient.PostAllinPayApiService(allinpayRequestModel);
                 Result(result);
             }
             catch (Exception ex)
@@ -439,11 +441,13 @@ namespace Allinpay
         private void button_Clear_Click(object sender, EventArgs e)
         {
             richTextBox_output.Text = " ";
+            textBox_Trans.Text = "";
         }
 
         private void Result(RequestClient.PostResponse result)
         {
             richTextBox_output.Text = " ";
+            
             string output = "";
             if (result.StatusCode == 200)
             {
@@ -460,9 +464,10 @@ namespace Allinpay
                     }
                 }
                 richTextBox_output.Text = result.Status.ToString(); 
-                RequestClient.WriteEventLog(result.Status.ToString());
+                RequestClient.WriteEventLog("Response : " + result.Status.ToString());
             }
             else { richTextBox_output.Text = result.Error.Description.ToString(); }
+            textBox_Trans.Text = "";
         }
 
         bool IsWithinJson(string jsonString, int index)
